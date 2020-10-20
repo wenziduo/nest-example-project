@@ -73,3 +73,14 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+## 自动化创建
+
+- nest new 名称 创建项目
+- nest -h/--help 帮助
+- nest g co 名称 创建控制器
+- nest g s 名称 创建服务
+- nest g mi 名称 创建中间件
+- nest g pi 名称 创建管道
+- nest g mo 名称 创建模块
+- nest g gu 名称 创建守卫
