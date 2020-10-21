@@ -6,10 +6,12 @@ import { DogService } from './dog.service';
 @Controller('dog')
 export class DogController {
   constructor(private readonly dogService: DogService) {}
-
+  @Get('find')
+  find(): any {
+    return this.dogService.find();
+  }
   @Get('getList')
   getList(@Query('name') name: string): string {
-    console.log('name', name);
     return this.dogService.getList(name);
   }
 }

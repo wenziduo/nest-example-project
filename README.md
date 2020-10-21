@@ -84,3 +84,14 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 - nest g pi 名称 创建管道
 - nest g mo 名称 创建模块
 - nest g gu 名称 创建守卫
+
+# 执行顺序
+
+- graph LR
+- 客户端请求 --> 中间件
+- 中间件 --> 守卫
+- 守卫 --> 拦截器之前
+- 拦截器之前 --> 管道
+- 管道 --> 控制器处理并响应
+- 控制器处理并响应 --> 拦截器之后
+- 拦截器之后 --> 过滤器

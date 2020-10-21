@@ -3,18 +3,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ApiException } from '../common/exceptions/api.exception';
 import { ApiErrorCode } from '../common/enums/api-error-code.enum';
-import { Dog } from './dog.entity';
+import { Cat } from './cat.entity';
 
 @Injectable()
-export class DogService {
+export class CatService {
   constructor(
-    @InjectRepository(Dog)
-    private readonly DogRepository: Repository<Dog>,
+    @InjectRepository(Cat)
+    private readonly CatRepository: Repository<Cat>,
   ) {}
-  async find(): Promise<any> {
-    const res = await this.DogRepository.find();
-    console.log('res', res);
-    return res;
+  find(): any {
+    return this.CatRepository.find();
   }
   getList(name: string): string {
     if (name === '蔡雯多') {
