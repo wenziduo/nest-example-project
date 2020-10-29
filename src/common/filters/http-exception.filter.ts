@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import {
   ArgumentsHost,
   Catch,
@@ -18,13 +19,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
       response.status(status).json({
         errorCode: exception.getErrorCode(),
         errorMessage: exception.getErrorMessage(),
-        date: new Date().toLocaleDateString(),
+        date: moment().format('YYYY-MM-DD HH:mm:ss'),
         path: request.url,
       });
     } else {
       response.status(status).json({
         statusCode: status,
-        date: new Date().toLocaleDateString(),
+        date: moment().format('YYYY-MM-DD HH:mm:ss'),
         path: request.url,
       });
     }

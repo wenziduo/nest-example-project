@@ -1,9 +1,18 @@
-import { Controller, Get, Query, Param } from '@nestjs/common';
+import { Controller, Get, Query, Param, UsePipes } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CatService } from './cat.service';
+import { CreateCatDto } from './create-cat.dto';
+import { JoiValidationPipe } from './JoiValidationPipe';
+import { ValidationPipe } from '../utils/ValidationPipe';
+import { object, string, number } from '@hapi/joi';
 
-@ApiTags('Cat')
-@Controller('Cat')
+const createCatSchema = object({
+  name: string().required(),
+  age: number().required(),
+});
+
+@ApiTags('cat')
+@Controller('cat')
 export class CatController {
   constructor(private readonly CatService: CatService) {}
   @Get('find')
@@ -11,8 +20,9 @@ export class CatController {
     return this.CatService.find();
   }
   @Get('getList')
-  getList(@Query('name') name: string): string {
-    console.log('name', name);
-    return this.CatService.getList(name);
+  // @UsePipes(new JoiValidationPipe(createCatSchema))
+  getList(@Query(new ValidationPipe()) createCatDto: CreateCatDto): string {
+    console.log('createCatDto', createCatDto);
+    return this.CatService.getList(createCatDto);
   }
 }

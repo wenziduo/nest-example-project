@@ -2,10 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { ValidationPipe } from './utils/ValidationPipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalPipes(new ValidationPipe()); // 全局管道
   const options = new DocumentBuilder()
     .setTitle('Cats example')
     .setDescription('The cats API description')

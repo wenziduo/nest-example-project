@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { DogModule } from './dog/dog.module';
 import { CatModule } from './cat/cat.module';
 import { AdminModule } from './admin/admin.module';
-import { AdminnService } from './adminn/adminn.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -23,9 +23,10 @@ import { AdminnService } from './adminn/adminn.service';
     DogModule,
     CatModule,
     AdminModule,
+    UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AdminnService],
+  providers: [AppService],
 })
 export class AppModule {
   constructor(private readonly connection: Connection) {}
