@@ -9,6 +9,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe()); // 全局管道
   const options = new DocumentBuilder()
+    .addBearerAuth() // 开启 BearerAuth 授权认证
     .setTitle('Cats example')
     .setDescription('The cats API description')
     .setVersion('1.0')

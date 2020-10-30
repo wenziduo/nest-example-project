@@ -25,12 +25,7 @@ export class ValidationPipe implements PipeTransform<valueType> {
     const errors = await validate(object);
     if (errors.length > 0) {
       throw new ApiException(
-        errors.map(
-          item =>
-            `[属性名称：${item.property}，属性值：${
-              item.value
-            }，错误文案：${JSON.stringify(item.constraints)}]`,
-        ),
+        `Validation failed：${Object.values(errors[0].constraints)[0]}`,
         ApiErrorCode.USER_ID_INVALID,
         HttpStatus.BAD_REQUEST,
       );
